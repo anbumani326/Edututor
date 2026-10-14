@@ -171,23 +171,7 @@ EduTutor AI features a built-in empirical evaluation benchmark:
 
 ---
 
-## 🎬 Demo Guide & Flow
 
-- **Demo Credentials**:
-  - Email: `demo@example.com`
-  - Password: `password123`
-  - *(Click the "Quick Login as Demo Student" button on `/login`)*
-
-- **Recommended 6-Minute Walkthrough**:
-  - **0:00 - 0:45 | Login & Dashboard**: Log in as demo student. View enrolled course (*Biology 101: Cell Structure*), overall mastery, and course statistics.
-  - **0:45 - 1:30 | Multimodal Materials**: Open Course Materials. View uploaded PDF (`Cell_Biology_Basics.pdf`), PPTX deck, or YouTube / Video sources. Show processed chunks with page and slide numbers.
-  - **1:30 - 2:30 | Grounded AI Tutor**: Ask *"Which organelle generates ATP and cellular energy?"*. Observe fast vector retrieval, grounded Qwen3 response, and clickable citation (`Cell_Biology_Basics.pdf Page 2`). Click citation to jump to exact page in the Source Viewer.
-  - **2:30 - 3:00 | Grounding Refusal Guard**: Click the suggestion *"🛡️ Refusal test: What is the secret recipe for chocolate fudge brownies?"*. Observe immediate refusal badge (`🛡️ Grounding Guard: Unverifiable Query Refused`) with zero fabricated citations.
-  - **3:00 - 4:00 | Adaptive Quiz**: Navigate to Adaptive Practice. Notice the dynamically calibrated difficulty and targeted weak-concept focus.
-  - **4:00 - 4:30 | Misconception Diagnosis & BKT**: Submit quiz answers intentionally selecting an incorrect distractor. Observe AI Misconception Diagnosis explaining why the choice is wrong and linking to the source excerpt. View real-time BKT updates ($P(L)$ dropping on incorrect, rising on correct).
-  - **4:30 - 5:00 | Concept Map & Recommendations**: Open the Concept Map. View interactive SVG graph colored by student mastery. Check Recommendations for AI-guided next steps.
-  - **5:00 - 5:30 | Progress Tracking**: View Progress dashboard showing mastery progression and quiz attempt history.
-  - **5:30 - 6:00 | System Evaluation & Simulation**: Open Evaluation. View measured RAG metrics (Retrieval Hit Rate, Faithfulness, Refusal Rate). Run the 3-Student Personalization Simulation showing **+39.0%** adaptation advantage over random baseline (**+11.5%**).
 
 ---
 
