@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EduTutor AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f8fc;--card:#fff;--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--pri:#4f46e5;--pri-soft:#eef0ff;--ok:#16a34a;--ok-soft:#ecfdf3;--bad:#dc2626;--bad-soft:#fef2f2;--warn:#b45309;--warn-soft:#fef3c7;--r:14px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#171a23;--ink:#f3f4f6;--mut:#9ca3af;--line:#272b38;--pri:#818cf8;--pri-soft:#1e2140;--ok-soft:#10261a;--bad-soft:#2a1416;--warn-soft:#2b2210}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#171a23;--ink:#f3f4f6;--mut:#9ca3af;--line:#272b38;--pri:#818cf8;--pri-soft:#1e2140;--ok-soft:#10261a;--bad-soft:#2a1416;--warn-soft:#2b2210}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,sans-serif}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:var(--card);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:20px;position:sticky;top:0;height:100vh}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px}.logo i{width:34px;height:34px;border-radius:9px;background:var(--pri);display:grid;place-items:center;color:#fff;font-style:normal}
+.tag{color:var(--mut);font-size:13px;margin:-8px 0 0}
+.course{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}.course small{font-size:11px;letter-spacing:.04em;color:var(--mut);text-transform:uppercase}.course b{display:block}
+nav button{display:flex;gap:12px;align-items:center;width:100%;border:0;background:none;color:var(--mut);font:inherit;font-size:15px;padding:11px 14px;border-radius:10px;cursor:pointer;text-align:left}
+nav button.on{background:var(--pri-soft);color:var(--pri);font-weight:500}nav button:hover:not(.on){background:var(--bg)}
+.up{margin-top:auto;padding:0 8px}.up small{font-size:11px;letter-spacing:.04em;color:var(--mut);text-transform:uppercase}.up b{display:block}.up span{color:var(--mut);font-size:13px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;border-bottom:1px solid var(--line);background:var(--card)}
+.crumb{color:var(--mut)}.crumb b{color:var(--ink);font-weight:500}
+.search{border:1px solid var(--line);border-radius:10px;padding:8px 14px;color:var(--mut);min-width:260px;display:flex;justify-content:space-between}
+main{padding:32px;max-width:1280px}.eyebrow{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+h1{font-size:32px;font-weight:400;margin:6px 0 6px;letter-spacing:-.01em}.sub{color:var(--mut);margin:0 0 24px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:10px;font:inherit;font-weight:500;cursor:pointer}
+.btn.p{background:var(--pri);border-color:var(--pri);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.stat span{color:var(--mut)}.stat b{display:block;font-size:34px;font-weight:400;margin:6px 0}.stat small{color:var(--mut)}.up2{color:var(--ok)!important}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start}
+.pill{background:var(--pri-soft);color:var(--pri);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:500;display:inline-block}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pri)}
+.steps{background:var(--bg);border-radius:12px;padding:16px;display:grid;gap:10px}
+.days{display:flex;gap:14px;margin:18px 0 6px}.days div{text-align:center;color:var(--mut);font-size:12px}.days i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--pri-soft);color:var(--pri);font-style:normal;margin-bottom:6px}.days i.off{background:var(--bg);color:var(--line)}
+.drop{border:1.5px dashed var(--pri);border-radius:var(--r);padding:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.banner{background:var(--pri-soft);border-radius:var(--r);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.tabs span{padding:8px 14px;border-radius:8px;color:var(--mut)}.tabs .on{background:var(--pri-soft);color:var(--pri);font-weight:500}
+table{width:100%;border-collapse:collapse}th{text-align:left;color:var(--mut);font-weight:400;padding:14px 16px;border-bottom:1px solid var(--line)}td{padding:14px 16px;border-bottom:1px solid var(--line)}td small{display:block;color:var(--mut)}
+.st{padding:3px 10px;border-radius:7px;font-size:12px;font-weight:500;background:var(--ok-soft);color:var(--ok)}.st.w{background:var(--warn-soft);color:var(--warn)}.st.b{background:var(--pri-soft);color:var(--pri)}
+.q{background:var(--bg);border-radius:12px;padding:14px 16px;margin-bottom:16px}.q small{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.eq{background:var(--pri-soft);border-radius:12px;padding:16px 20px;font-size:20px;display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+.cite{color:var(--pri);font-weight:500;cursor:pointer}
+.exc{background:var(--pri-soft);border:1px solid var(--pri);border-radius:12px;padding:14px;margin-top:12px}
+.opt{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;background:var(--card);width:100%;font:inherit;color:inherit;text-align:left}
+.opt em{width:28px;height:28px;border-radius:7px;background:var(--bg);display:grid;place-items:center;font-style:normal;font-weight:500;color:var(--mut)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad)}.opt.bad em{background:var(--bad);color:#fff}
+.opt.good{background:var(--ok-soft);border-color:var(--ok)}.opt.good em{background:var(--ok);color:#fff}.opt span{margin-left:auto;font-size:12px}
+.nums{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.nums i{width:38px;height:36px;border:1px solid var(--line);border-radius:8px;display:grid;place-items:center;font-style:normal;color:var(--mut)}
+.nums .g{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}.nums .r{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)}
+.view{display:none}.view.on{display:block}
+@media(max-width:1000px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px}.course,.up,.tag{display:none}nav{display:flex;gap:4px;overflow-x:auto;width:100%}nav button{white-space:nowrap;width:auto}.grid4{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.top{padding:12px 16px}.search{display:none}main{padding:20px 16px}.tbl{overflow-x:auto}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}h1{font-size:26px}}
+</style></head><body>
+<div class="app">
+<aside>
+ <div class="logo"><i>▤</i>EduTutor AI</div><p class="tag">Learn from your own course material.</p>
+ <div class="course"><small>Current course</small><b>Machine Learning</b><span style="color:var(--mut)">CS 204 · Fall 2026</span></div>
+ <nav id="nav">
+  <button class="on" data-v="ov">▦ Overview</button><button data-v="mat">▭ Course materials</button><button data-v="tut">✦ AI tutor</button><button data-v="prac">☑ Practice &amp; quizzes</button><button data-v="prog">⌁ My progress</button>
+ </nav>
+ <div class="up"><small>Coming up</small><b>Midterm assessment</b><span>Oct 16 · 13 days to prepare</span></div>
+</aside>
+<div>
+<div class="top"><div class="crumb">My workspace &nbsp;›&nbsp; <b id="crumb">Overview</b></div><div class="search"><span>Search your workspace</span><span>⌘ K</span></div></div>
+<main>
+
+<section class="view on" id="ov">
+ <div class="head"><div><div class="eyebrow">Saturday, October 3</div><h1>Welcome back, Alex</h1><p class="sub">A little progress every day. Let’s make today’s learning count.</p></div><button class="btn">+ Upload materials</button></div>
+ <div class="grid4">
+  <div class="card stat"><span>Course mastery</span><b>72%</b><small class="up2">↑ 8 points this week</small></div>
+  <div class="card stat"><span>Materials in your library</span><b>12</b><small>10 ready · 2 need attention</small></div>
+  <div class="card stat"><span>Practice accuracy</span><b>75%</b><small>6 of 8 in your last quiz</small></div>
+  <div class="card stat"><span>Learning streak</span><b>5 days</b><small>You’re building a great habit</small></div>
+ </div>
+ <div class="two">
+  <div class="card"><div class="row"><h3 style="margin:0;font-weight:500;font-size:18px">Your next learning step</h3><span class="pill">Recommended for you</span></div>
+   <div class="row" style="align-items:flex-start;margin-top:18px;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h2 style="font-weight:500;margin:0 0 8px;font-size:24px">Make gradient descent click</h2><p style="color:var(--mut)">Connect the update rule to the intuition. Your practice responses suggest learning rate is the best place to focus.</p><small style="color:var(--mut)">12 min guided session &nbsp;&nbsp; 3 course sources</small></div>
+   <div class="steps"><div>✓ Review the intuition</div><div>✦ Ask your AI tutor</div><div>☑ Practice 8 questions</div></div></div>
+   <p style="margin-top:20px"><button class="btn p" onclick="go('tut')">→ Continue with AI tutor</button> &nbsp;<span style="color:var(--mut)">Last studied yesterday</span></p></div>
+  <div class="card"><div class="row"><h3 style="margin:0;font-weight:500;font-size:18px">Your weekly goal</h3></div>
+   <div style="font-size:42px;margin:10px 0">84 <span style="font-size:16px;color:var(--mut)">/ 120 minutes</span></div><div class="bar"><i style="width:70%"></i></div>
+   <div class="days"><div><i>✓</i>M</div><div><i>✓</i>T</div><div><i>✓</i>W</div><div><i>✓</i>T</div><div><i>✓</i>F</div><div><i class="off">•</i>S</div><div><i class="off">•</i>S</div></div>
+   <small style="color:var(--mut)">36 more minutes to reach your goal.</small></div>
+ </div>
+</section>
+
+<section class="view" id="mat">
+ <div class="head"><div><div class="eyebrow">CS 204 · Machine Learning</div><h1>Your course, connected</h1><p class="sub">Turn lectures, readings and notes into a knowledge base you can learn from.</p></div><button class="btn p">+ Upload materials</button></div>
+ <div class="drop"><div><b style="font-size:18px;font-weight:500">Drop your course materials here</b><div style="color:var(--mut)">Videos, PDF textbooks, notes, PowerPoint slides, images and diagrams</div><small style="color:var(--mut)">MP4, MOV, PDF, DOCX, PPTX, JPG, PNG · Up to 500 MB per file</small></div><button class="btn">Browse files</button></div>
+ <div class="banner"><div><b style="font-weight:500">10 of 12 sources are ready for learning</b><div style="color:var(--mut)">Only ready sources are used in tutor answers, citations and adaptive quizzes.</div></div><div><span class="pill" style="background:none">1 processing</span> <span class="st w">1 needs review</span></div></div>
+ <div class="tabs"><span class="on">All materials 12</span><span>Ready 10</span><span>Processing 1</span><span>Needs review 1</span></div>
+ <div class="card tbl" style="padding:0"><table><tr><th>Material</th><th>Format</th><th>Content / size</th><th>Source readiness</th></tr>
+  <tr><td>Lecture 04 · Gradient Descent<small>Prof. Sarah Chen · Uploaded Oct 2</small></td><td>Lecture video</td><td>42 min · 186 MB</td><td><span class="st">● Ready</span><small>Transcript indexed</small></td></tr>
+  <tr><td>ML Foundations · Chapter 4<small>Textbook · Uploaded Oct 2</small></td><td>PDF textbook</td><td>28 pages · 4.2 MB</td><td><span class="st">● Ready</span><small>Text &amp; figures indexed</small></td></tr>
+  <tr><td>Week 4 · Optimization Notes<small>Lecture notes</small></td><td>PDF notes</td><td>6 pages</td><td><span class="st b">● Processing</span><small>Creating embeddings</small></td></tr></table></div>
+</section>
+
+<section class="view" id="tut">
+ <div class="head"><div><div class="eyebrow">CS 204 · Optimization</div><h1>Understand, don’t just memorize</h1><p class="sub">Explore ideas with a tutor grounded in your lectures, textbook and notes.</p></div><button class="btn">+ New session</button></div>
+ <div class="two">
+  <div class="card"><div class="row"><b style="font-weight:500;font-size:17px">✦ Gradient descent</b><span><span class="btn" style="padding:5px 12px">Explain</span> <span style="color:var(--mut)">Guide me</span></span></div><hr style="border:0;border-top:1px solid var(--line);margin:16px -20px">
+   <div class="q"><small>Your question</small><div style="font-size:15px;margin-top:4px">Why doesn’t a larger learning rate always help gradient descent converge faster?</div></div>
+   <div class="row" style="justify-content:flex-start;margin-bottom:10px"><b style="font-weight:500">✦ EduTutor AI</b><span class="pill">3 sources used</span></div>
+   <p style="font-size:15px">A larger learning rate makes each update bigger, not necessarily better. If the step is too large, it can jump past the minimum, causing oscillation or even divergence. <span class="cite">[1]</span></p>
+   <div class="eq"><span>θ<sub>t+1</sub> = θ<sub>t</sub> − α ∇J(θ<sub>t</sub>)</span><small style="color:var(--mut);font-size:13px">α = learning rate <span class="cite">[2]</span></small></div>
+   <div class="grid4" style="grid-template-columns:1fr 1fr;margin:0">
+    <div class="q" style="margin:0">Small enough: moves toward the minimum<svg viewBox="0 0 300 120" width="100%"><path d="M30 10Q150 150 270 10" fill="none" stroke="var(--line)" stroke-width="2"/><path d="M60 30L110 80L160 90" fill="none" stroke="var(--pri)" stroke-width="2"/></svg></div>
+    <div class="q" style="margin:0">Too large: overshoots the minimum<svg viewBox="0 0 300 120" width="100%"><path d="M30 10Q150 150 270 10" fill="none" stroke="var(--line)" stroke-width="2"/><path d="M60 22L250 30L70 36L240 44" fill="none" stroke="var(--pri)" stroke-width="2"/></svg></div></div>
+  </div>
+  <div style="display:grid;gap:20px">
+   <div class="card"><div class="row"><h3 style="margin:0;font-weight:500;font-size:18px">Learning context</h3><span class="cite">Manage</span></div><p style="color:var(--mut)">This session uses these ready course sources.</p>
+    <p>☑ <b style="font-weight:500">Lecture 04 · Gradient Descent</b><br><small style="color:var(--mut)">Video · Prof. Sarah Chen</small></p><p>☑ <b style="font-weight:500">ML Foundations · Chapter 4</b><br><small style="color:var(--mut)">Textbook · 28 pages</small></p><p>☑ <b style="font-weight:500">Week 4 · Optimization Notes</b><br><small style="color:var(--mut)">Lecture notes · 6 pages</small></p></div>
+   <div class="card"><div class="row"><h3 style="margin:0;font-weight:500;font-size:18px">Relevant excerpts</h3><span class="pill" style="background:var(--bg);color:var(--mut)">3 cited</span></div>
+    <div class="exc"><div class="row"><b class="cite">[1] Lecture 04</b><span class="cite">18:24–19:10 ↗</span></div><p>“If the learning rate is too large, we may overshoot the minimum and see the cost oscillate rather than decrease.”</p><div class="card" style="padding:12px">▷ <b style="font-weight:500">Choosing a learning rate</b><br><small style="color:var(--mut)">Open at 18:24 · 46 sec excerpt</small></div></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="prac">
+ <div class="head"><div><div class="eyebrow">CS 204 · Adaptive practice</div><h1>Practice with a purpose</h1><p class="sub">A short, source-grounded quiz that adapts to what you understand—and what needs work.</p></div><button class="btn">⇥ Save &amp; exit</button></div>
+ <div class="card row" style="margin-bottom:20px;flex-wrap:wrap"><div><b style="font-weight:500;font-size:17px">Gradient Descent · Concept check</b><div style="color:var(--mut)">8 questions · Untimed · Based on 3 ready sources</div></div><div class="row" style="gap:20px"><span class="pill">• Adaptive difficulty</span><div style="min-width:200px"><div class="row" style="color:var(--mut)">Answered <b style="color:var(--ink)">5 of 8</b></div><div class="bar"><i style="width:62%"></i></div></div></div></div>
+ <div class="two">
+  <div class="card"><div class="row"><span class="eyebrow">Question 5 of 8</span><span><span class="pill" style="background:var(--bg);color:var(--mut)">Learning rate</span> <span class="pill" style="background:var(--bg);color:var(--mut)">Intermediate</span></span></div>
+   <h2 style="font-weight:500;font-size:26px;margin:22px 0 12px">What can happen if the learning rate α is too large during gradient descent?</h2><p style="color:var(--mut)">Choose the best answer.</p>
+   <div id="opts"><button class="opt" data-k="A"><em>A</em>The gradient itself becomes smaller.</button><button class="opt" data-k="B"><em>B</em>The model always converges faster.</button><button class="opt" data-k="C"><em>C</em>Updates may overshoot, oscillate or diverge.</button><button class="opt" data-k="D"><em>D</em>The loss function changes shape.</button></div></div>
+  <div style="display:grid;gap:20px">
+   <div class="card"><h3 style="margin:0;font-weight:500;font-size:18px">This practice session</h3><div class="nums"><i class="g">1</i><i class="g">2</i><i class="r">3</i><i class="g">4</i><i class="r">5</i><i>6</i><i>7</i><i>8</i></div>
+    <div class="row" style="border-top:1px solid var(--line);padding-top:14px"><span style="color:var(--mut)">Correct so far</span><b style="font-size:18px">3 / 5</b></div><p style="color:var(--mut)">This is practice, not a grade. Mastery updates when you finish all 8 questions.</p></div>
+   <div class="card"><b style="font-weight:500;font-size:17px">✦ Adapting to you</b><p><span class="pill">Next: foundational level</span></p><p style="color:var(--mut)">Let’s strengthen the learning-rate intuition before moving to harder convergence questions.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="prog"><div class="eyebrow">CS 204 · Progress</div><h1>My progress</h1><p class="sub">Placeholder screen: no Figma frame was shared yet. Share it and I’ll match it.</p></section>
+
+</main></div></div>
+<script>
+const names={ov:'Overview',mat:'Course materials',tut:'AI tutor',prac:'Practice & quizzes',prog:'My progress'};
+function go(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));
+document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+document.getElementById('crumb').textContent=names[v];window.scrollTo(0,0)}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+document.getElementById('opts').onclick=e=>{const o=e.target.closest('.opt');if(!o)return;
+document.querySelectorAll('.opt').forEach(x=>{x.className='opt';x.querySelector('span')?.remove()});
+const right=o.dataset.k==='C';o.classList.add(right?'good':'bad');o.insertAdjacentHTML('beforeend','<span>'+(right?'Correct answer ✓':'Your answer ✕')+'</span>');
+if(!right){const c=document.querySelector('.opt[data-k=C]');c.classList.add('good');c.insertAdjacentHTML('beforeend','<span>Correct answer ✓</span>')}}
+</script></body></html>

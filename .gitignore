@@ -1,0 +1,91 @@
+# ==========================================
+# EduTutor AI — Git Ignore Rules
+# ==========================================
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# Uploaded/generated application data
+uploads/
+upload/
+storage/
+data/
+temp/
+tmp/
+processed/
+processing/
+frames/
+audio/
+transcripts/
+ocr/
+cache/
+
+# Video/media files
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+*.wav
+*.mp3
+*.m4a
+
+# Local vector/database storage
+qdrant_storage/
+qdrant_data/
+postgres_data/
+pgdata/
+
+# AI/model files
+models/
+*.gguf
+*.safetensors
+*.bin
+*.onnx
+*.pt
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.tsbuildinfo
+test*.pdf
